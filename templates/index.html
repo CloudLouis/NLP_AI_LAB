@@ -1,0 +1,25 @@
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+// setup some JSON to use
+
+window.onload = function() {
+	// setup the button click
+	document.getElementById("theButton").onclick = function() {
+		doWork()
+	};
+}
+
+function doWork() {
+	var toSend = {'content':$('#text').val()}
+	// ajax the JSON to the server
+	$.post("receiver", JSON.stringify(toSend), function(data){
+		$( "#result" ).append("<br>"+data)
+	});
+	// stop link reloading the page
+ event.preventDefault();
+}
+</script>
+News link:<br /><br />
+<input id='text' style='width:75%;height:30px'></input><br>
+<a href="" id="theButton">Send</a><br>
+Similarity: <a id="result"></a>
